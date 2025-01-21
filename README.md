@@ -2,6 +2,8 @@
 
 ## Subway-Map
 
+[Go to subway map terraform code](https://github.com/LeeJuHwan/infra-workshop/tree/subwaymap)
+
 ### 망 구성하기
 
 > [!TIP]
@@ -50,14 +52,14 @@
 > - **내부망**
 >   - 외부망 : 3306 포트 오픈
 >   - 관리망 : 22번 포트 오픈
-> - ~~**관리망**~~
->   - ~~자신의 로컬 PC 공인 IP : 22번 포트 오픈~~
+> - **관리망**
+>   - 자신의 로컬 PC 공인 IP : 22번 포트 오픈
 
 | 용도 | 이름 | 인바운드 규칙 | 아웃바운드 규칙 |
 | --- | --- | --- | --- | 
 | 외부 | infraworkshop-apne2-external-permit-security-group | `"0.0.0.0/0:443"`, `192.168.10.160/27:22` | `"0.0.0.0/0":0` |
 | 내부 | infraworkshop-apne2-internal-permit-security-group | `"192.168.10.0/26:3306"`, `192.168.10.160/27:22` | `"0.0.0.0/0":0` |
-| ~~관리~~ |  |  |  |
+| 관리 | infraworkshop-apne2-admin-permit-security-group | "my local IP/32:22" | `"0.0.0.0/0":0` |
 
 ---
 
@@ -90,3 +92,6 @@
 | --- | --- | --- | --- |
 | 외부 | infraworkshop-apne2-public-route-table | infraworkshop-apne2-public-subnet-a, infraworkshop-apne2-public-subnet-c | infraworkshop-apne2-igw |
 | 내부 | infraworkshop-apne2-private-route-table | infraworkshop-apne2-private-subnet-a, infraworkshop-apne2-private-subnet-c | FCK-NAT |
+
+
+
