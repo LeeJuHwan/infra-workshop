@@ -103,7 +103,6 @@ resource "aws_vpc_security_group_ingress_rule" "rules" {
   to_port           = each.value.to_port
 }
 
-
 resource "aws_vpc_security_group_egress_rule" "rules" {
   for_each = var.egress_rules
 
@@ -113,6 +112,15 @@ resource "aws_vpc_security_group_egress_rule" "rules" {
   ip_protocol       = each.value.ip_protocol
   to_port           = each.value.to_port
 }
+
+resource "aws_vpc_security_group_ingress_rule" "admin_rule" {
+  security_group_id = aws_security_group.groups["infraworkshop-apne2-admin-permit-security-group"].id
+  cidr_ipv4         = "${chomp(data.http.myip.response_body)}/32"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
 
 
 
@@ -132,7 +140,7 @@ resource "aws_instance" "fck-nat" {
   ami           = data.aws_ami.fck_nat.id
   instance_type = "t3.nano"
   tags = {
-    Name = "FCK-NAT"
+    Name = "${var.vpc_name}-nat-instance"
   }
 
   network_interface {

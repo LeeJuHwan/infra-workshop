@@ -12,3 +12,8 @@ data "aws_ami" "fck_nat" {
   owners      = ["568608671756"]
   most_recent = true
 }
+
+
+data "http" "myip" {
+  url = "https://ipv4.icanhazip.com"
+}
