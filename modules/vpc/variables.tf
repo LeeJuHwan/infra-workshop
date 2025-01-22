@@ -27,11 +27,12 @@ variable "security_groups" {
 
 variable "ingress_rules" {
   type = map(object({
-    security_group_name = string
-    cidr_ipv4           = string
-    from_port           = optional(number)
-    ip_protocol         = string
-    to_port             = optional(number)
+    security_group_name         = string
+    source_sercurity_group_name = optional(string)
+    cidr_ipv4                   = optional(string)
+    from_port                   = optional(number)
+    ip_protocol                 = string
+    to_port                     = optional(number)
   }))
 }
 
