@@ -3,7 +3,7 @@ locals {
 }
 
 module "vpc" {
-  source = "../../modules/vpc"
+  source = "../modules/vpc"
 
   vpc_name                = local.config.vpc_name
   cidr_block              = local.config.cidr_block
