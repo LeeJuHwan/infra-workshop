@@ -10,8 +10,10 @@
 > | B Class | 128.0.0.0 ~ 191.0.0.0 | 2^16 (65,536) | 128.12.12.12 |
 > | C Class | 192.0.0.0 ~ 223.0.0.0 | 2^8 (256) | 192.168.10.1 |
 
-
 <br></br>
+
+---
+
 
 > [!NOTE]
 > ***VPC 구성***
@@ -20,7 +22,7 @@
 | --- | --- |
 | infraworkshop-apne2 | 192.168.10.0/24 |
 
----
+<br></br>
 
 > [!NOTE]
 > ***서브넷 구성***
@@ -37,7 +39,7 @@
 | 내부 | infraworkshop-apne2-private-subnet-a | 192.168.10.128/27 | ap-northeast-2a |
 | 관리 | infraworkshop-apne2-private-subnet-c | 192.168.10.160/27 | ap-northeast-2c |
 
----
+<br></br>
 
 > [!NOTE]
 > ***보안 그룹 규칙 구성***
@@ -56,8 +58,7 @@
 | 내부 | infraworkshop-apne2-internal-permit-security-group | `"192.168.10.0/26:3306"`, `infraworkshop-apne2-admin-permit-security-group:22` | `"0.0.0.0/0":0` |
 | 관리 | infraworkshop-apne2-admin-permit-security-group | "my local IP/32:22" | `"0.0.0.0/0":0` |
 
----
-
+<br></br>
 
 > [!NOTE]
 > ***인터넷 게이트웨이 구성***
@@ -68,6 +69,7 @@
 | --- | --- | --- | --- | 
 | 외부 | infraworkshop-apne2-igw | 0.0.0.0 | infraworkshop-apne2 |
 
+<br></br>
 
 > [!NOTE]
 > ***나트 인스턴스 구성***
@@ -78,7 +80,9 @@
 
 | 용도 | 이름 | 도착지 | VPC |
 | --- | --- | --- | --- | 
-| 내부 | FCK-NAT | 0.0.0.0 | infraworkshop-apne2 |
+| 내부 | infraworkshop-apne2-nat-instance | 0.0.0.0 | infraworkshop-apne2 |
+
+<br></br>
 
 > [!NOTE]
 > ***라우팅 테이블 구성***
@@ -86,9 +90,11 @@
 | 용도 | 이름 | 서브넷 연결 | 게이트웨이 |
 | --- | --- | --- | --- |
 | 외부 | infraworkshop-apne2-public-route-table | infraworkshop-apne2-public-subnet-a, infraworkshop-apne2-public-subnet-c | infraworkshop-apne2-igw |
-| 내부 | infraworkshop-apne2-private-route-table | infraworkshop-apne2-private-subnet-a, infraworkshop-apne2-private-subnet-c | FCK-NAT |
+| 내부 | infraworkshop-apne2-private-route-table | infraworkshop-apne2-private-subnet-a, infraworkshop-apne2-private-subnet-c | infraworkshop-apne2-nat-instance |
 
+---
 
+<br></br>
 
 ### 서버 구성하기
 
@@ -96,4 +102,9 @@
 > ***Bastion Host 구성***
 > 
 > - 관리자 개인 로컬 IP 32 bit만 SSH 접근할 수 있도록 허용
+> - 로컬 키 파일 생성 및 ***0400*** 권한 부여
+
+| 용도 | 이름 | 서브넷 연결 | 보안 그룹 | 스펙 | 운영체제 | keypair |
+| --- | --- | --- | --- | --- | --- | --- |
+| Bastion | infraworkshop-apne2-bastion | infraworkshop-apne2-public-subnet-c | infraworkshop-apne2-admin-permit-security-group | t3.micro | AamazonLinux 2023 | infraworkshop-apne2-keypair |
 
