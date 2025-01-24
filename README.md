@@ -1,9 +1,10 @@
 # infra-workshop
 
-## Subway-map
+## Subway-map with [Terraform](./subwaymap/README.md)
 
 <p align="center">
-<img width="50%" height="50%" alt="image" src="https://github.com/user-attachments/assets/a0c9f993-d893-4fa9-9067-30783e1a7bb7" />
+  
+![image](https://github.com/user-attachments/assets/9bfe8f93-da25-462c-8ac3-3a93ab73676d)
+
 </p>
 
-[지하철 노선도 구성](./subwaymap/README.md)
