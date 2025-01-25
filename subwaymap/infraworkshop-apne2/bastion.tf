@@ -7,4 +7,7 @@ module "bastion" {
   subnet_id             = module.vpc.subnets["infraworkshop-apne2-public-subnet-c"].id
   security_group_id     = module.vpc.security_groups["infraworkshop-apne2-admin-permit-security-group"].id
   keypair_name          = "${module.vpc.vpc_name}-keypair"
+  availability_zone     = "ap-northeast-2c"
+  bastion_volume_name   = "${module.vpc.vpc_name}-ebs"
+  bastion_volume_size   = 8
 }

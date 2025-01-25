@@ -1,7 +1,7 @@
-## Subway-Map
+# Subway-Map
 
 
-### 망 구성하기
+## 망 구성하기
 
 > [!TIP]
 > CIDR은 C class(x.x.x.x/24)로 생성 (현업에선 가급적 B class로 생성하기 😀)
@@ -96,7 +96,9 @@
 
 <br></br>
 
-### 서버 구성하기
+## 서버 구성하기
+
+
 
 > [!NOTE]
 > ***Bastion Host 구성***
@@ -108,3 +110,25 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Bastion | infraworkshop-apne2-bastion | infraworkshop-apne2-public-subnet-c | infraworkshop-apne2-admin-permit-security-group | t3.micro | AamazonLinux 2023 | infraworkshop-apne2-keypair |
 
+> [!NOTE]
+> ***DB Instance 구성***
+> 
+> - 외부망 MySQL 3306 포트 접근 허용
+> - 관리망 SSH 22 포트 접근 허용
+> - Bastion Host와 로컬 키 파일 공용 사용
+
+| 용도 | 이름 | 서브넷 연결 | 보안 그룹 | 스펙 | 운영체제 | keypair |
+| --- | --- | --- | --- | --- | --- | --- |
+| Database | infraworkshop-apne2-database | infraworkshop-apne2-private-subnet-c | infraworkshop-apne2-internal-permit-security-group | t3.micro | AamazonLinux 2023 | infraworkshop-apne2-keypair |
+
+
+> [!NOTE]
+> ***DB Instance 구성***
+> 
+> - 모든 대역폭의 Https 443 포트 접근 허용
+> - 관리망 SSH 22 포트 접근 허용
+> - Bastion Host와 로컬 키 파일 공용 사용
+
+| 용도 | 이름 | 서브넷 연결 | 보안 그룹 | 스펙 | 운영체제 | keypair |
+| --- | --- | --- | --- | --- | --- | --- |
+| WAS | infraworkshop-apne2-was | infraworkshop-apne2-public-subnet-a | infraworkshop-apne2-external-permit-security-group | t3.small | AamazonLinux 2023 | infraworkshop-apne2-keypair |

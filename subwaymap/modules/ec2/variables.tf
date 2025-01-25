@@ -7,7 +7,7 @@ variable "instance_type" {
 }
 
 
-variable "bastion_instance_name" {
+variable "instance_name" {
   description = "bastion instance tag name"
 }
 
@@ -27,11 +27,11 @@ variable "availability_zone" {
   description = "Bastion host availability zone"
 }
 
-variable "bastion_volume_name" {
+variable "ebs_volume_name" {
   description = "Bastion instance ebs volume name"
 }
 
-variable "bastion_volume_size" {
+variable "ebs_volume_size" {
   description = "Bastion instance ebs volume size"
 }
 

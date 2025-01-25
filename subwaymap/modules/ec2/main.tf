@@ -1,13 +1,13 @@
-resource "aws_ebs_volume" "bastion-ebs-volume" {
+resource "aws_ebs_volume" "ebs-volume" {
   availability_zone = var.availability_zone
-  size              = var.bastion_volume_size
+  size              = var.ebs_volume_size
   type              = "gp3"
   tags = {
-    Name = var.bastion_volume_name
+    Name = var.ebs_volume_name
   }
 }
 
-resource "aws_instance" "bastion" {
+resource "aws_instance" "instance" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   subnet_id              = var.subnet_id
@@ -16,14 +16,14 @@ resource "aws_instance" "bastion" {
 
 
   tags = {
-    Name = var.bastion_instance_name
+    Name = var.instance_name
   }
 }
 
 
 resource "aws_volume_attachment" "ebs-volume-attachment" {
   device_name                    = "/dev/xvdh"
-  volume_id                      = aws_ebs_volume.bastion-ebs-volume.id
-  instance_id                    = aws_instance.bastion.id
+  volume_id                      = aws_ebs_volume.ebs-volume.id
+  instance_id                    = aws_instance.instance.id
   stop_instance_before_detaching = true
 }
