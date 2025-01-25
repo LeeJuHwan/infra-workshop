@@ -123,7 +123,7 @@
 
 
 > [!NOTE]
-> ***DB Instance 구성***
+> ***WAS Instance 구성***
 > 
 > - 모든 대역폭의 Https 443 포트 접근 허용
 > - 관리망 SSH 22 포트 접근 허용
