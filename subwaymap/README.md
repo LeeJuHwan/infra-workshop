@@ -54,9 +54,9 @@
 
 | 용도 | 이름 | 인바운드 규칙 | 아웃바운드 규칙 |
 | --- | --- | --- | --- | 
-| 외부 | infraworkshop-apne2-external-permit-security-group | `"0.0.0.0/0:443"`, `infraworkshop-apne2-admin-permit-security-group:22` | `"0.0.0.0/0":0` |
-| 내부 | infraworkshop-apne2-internal-permit-security-group | `"192.168.10.0/26:3306"`, `infraworkshop-apne2-admin-permit-security-group:22` | `"0.0.0.0/0":0` |
-| 관리 | infraworkshop-apne2-admin-permit-security-group | "my local IP/32:22" | `"0.0.0.0/0":0` |
+| 외부 | infraworkshop-apne2-external-permit-security-group | `"0.0.0.0:ICMP"`, `"0.0.0.0/0:443"`, `infraworkshop-apne2-admin-permit-security-group:22` | `"0.0.0.0/0":0` |
+| 내부 | infraworkshop-apne2-internal-permit-security-group | `"0.0.0.0:ICMP"`, `infraworkshop-apne2-external-permit-security-group:3306`, `infraworkshop-apne2-admin-permit-security-group:22` | `"0.0.0.0/0":0` |
+| 관리 | infraworkshop-apne2-admin-permit-security-group | `my local IP/32:22` | `"0.0.0.0/0":0` |
 
 <br></br>
 
@@ -108,7 +108,7 @@
 
 | 용도 | 이름 | 서브넷 연결 | 보안 그룹 | 스펙 | 운영체제 | keypair |
 | --- | --- | --- | --- | --- | --- | --- |
-| Bastion | infraworkshop-apne2-bastion | infraworkshop-apne2-public-subnet-c | infraworkshop-apne2-admin-permit-security-group | t3.micro | AamazonLinux 2023 | infraworkshop-apne2-keypair |
+| Bastion | infraworkshop-apne2-bastion | infraworkshop-apne2-management-subnet-c | infraworkshop-apne2-admin-permit-security-group | t3.micro | AamazonLinux 2023 | infraworkshop-apne2-keypair |
 
 > [!NOTE]
 > ***DB Instance 구성***
@@ -119,7 +119,7 @@
 
 | 용도 | 이름 | 서브넷 연결 | 보안 그룹 | 스펙 | 운영체제 | keypair |
 | --- | --- | --- | --- | --- | --- | --- |
-| Database | infraworkshop-apne2-database | infraworkshop-apne2-private-subnet-c | infraworkshop-apne2-internal-permit-security-group | t3.micro | AamazonLinux 2023 | infraworkshop-apne2-keypair |
+| Database | infraworkshop-apne2-database | infraworkshop-apne2-private-subnet-a | infraworkshop-apne2-internal-permit-security-group | t3.micro | AamazonLinux 2023 | infraworkshop-apne2-keypair |
 
 
 > [!NOTE]
