@@ -15,7 +15,6 @@ subnets:
   infraworkshop-apne2-management-subnet-c:
     availability_zone: "ap-northeast-2c"
     cidr_block: "192.168.10.160/27"
-    nat_gateway_subnet: "infraworkshop-apne2-public-subnet-a"
 security_groups:
   infraworkshop-apne2-external-permit-security-group: null
   infraworkshop-apne2-internal-permit-security-group: null
