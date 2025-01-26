@@ -12,7 +12,7 @@ subnets:
     availability_zone: "ap-northeast-2a"
     cidr_block: "192.168.10.128/27"
     nat_gateway_subnet: "infraworkshop-apne2-public-subnet-a"
-  infraworkshop-apne2-private-subnet-c:
+  infraworkshop-apne2-management-subnet-c:
     availability_zone: "ap-northeast-2c"
     cidr_block: "192.168.10.160/27"
     nat_gateway_subnet: "infraworkshop-apne2-public-subnet-a"
@@ -34,8 +34,9 @@ ingress_rules:
     from_port: 22
     to_port: 22
     ip_protocol: "tcp"
-  infraworkshop-apne2-external-permit-ssh-security-group-allow-managed-22:
+  infraworkshop-apne2-external-permit-ssh-security-group-allow-managed-icmp:
     security_group_name: "infraworkshop-apne2-external-permit-security-group"
+    cidr_ipv4: "0.0.0.0/0"
     from_port: -1
     to_port: -1
     ip_protocol: "icmp"
@@ -51,8 +52,9 @@ ingress_rules:
     from_port: 22
     to_port: 22
     ip_protocol: "tcp"
-  infraworkshop-apne2-internal-permit-ssh-security-group-allow-managed-22:
+  infraworkshop-apne2-internal-permit-ssh-security-group-allow-icmp:
     security_group_name: "infraworkshop-apne2-internal-permit-security-group"
+    cidr_ipv4: "0.0.0.0/0"
     from_port: -1
     to_port: -1
     ip_protocol: "icmp"
