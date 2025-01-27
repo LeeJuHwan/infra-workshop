@@ -1,17 +1,3 @@
-<p align="center">
-    <img width="200px;" src="https://raw.githubusercontent.com/brainbackdoor/infra-workshop/main/images/main_logo.png"/>
-</p>
-
-<h2 align="middle">인프라공방</h2>
-<p align="middle">학습 테스트를 위한 저장소</p>
-<p align="middle">
-
-<p align="center">
-  <img src="https://img.shields.io/badge/language-java-red.svg?style=flat-square"/>
-  <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
-</p>
-
-<br>
 
 ## 💡 Introduction
 
