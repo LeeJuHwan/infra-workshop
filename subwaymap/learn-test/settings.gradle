@@ -1,0 +1,5 @@
+rootProject.name = 'study'
+include 'cache'
+include 'servlet'
+include 'thread'
+
