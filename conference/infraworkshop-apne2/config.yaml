@@ -1,0 +1,80 @@
+vpc_name: "infraworkshop-apne2"
+cidr_block: "192.168.10.0/24"
+nat_security_group_name: "infraworkshop-apne2-permit-nat-security-group"
+subnets: 
+  infraworkshop-apne2-public-subnet-a:
+    availability_zone: "ap-northeast-2a"
+    cidr_block: "192.168.10.0/26"
+  infraworkshop-apne2-public-subnet-c:
+    availability_zone: "ap-northeast-2c"
+    cidr_block: "192.168.10.64/26"
+  infraworkshop-apne2-private-subnet-a:
+    availability_zone: "ap-northeast-2a"
+    cidr_block: "192.168.10.128/27"
+    nat_gateway_subnet: "infraworkshop-apne2-public-subnet-a"
+  infraworkshop-apne2-management-subnet-c:
+    availability_zone: "ap-northeast-2c"
+    cidr_block: "192.168.10.160/27"
+security_groups:
+  infraworkshop-apne2-external-permit-security-group: null
+  infraworkshop-apne2-internal-permit-security-group: null
+  infraworkshop-apne2-permit-nat-security-group: null
+  infraworkshop-apne2-admin-permit-security-group: null
+ingress_rules:
+  infraworkshop-apne2-external-permit-https-security-group-allow-443:
+    security_group_name: "infraworkshop-apne2-external-permit-security-group"
+    cidr_ipv4: "0.0.0.0/0"
+    from_port: 443
+    to_port: 443
+    ip_protocol: "tcp"
+  infraworkshop-apne2-external-permit-ssh-security-group-allow-managed-22:
+    security_group_name: "infraworkshop-apne2-external-permit-security-group"
+    source_sercurity_group_name: "infraworkshop-apne2-admin-permit-security-group"
+    from_port: 22
+    to_port: 22
+    ip_protocol: "tcp"
+  infraworkshop-apne2-external-permit-ssh-security-group-allow-managed-icmp:
+    security_group_name: "infraworkshop-apne2-external-permit-security-group"
+    cidr_ipv4: "0.0.0.0/0"
+    from_port: -1
+    to_port: -1
+    ip_protocol: "icmp"
+  infraworkshop-apne2-internal-permit-mysql-security-group-allow-3306:
+    security_group_name: "infraworkshop-apne2-internal-permit-security-group"
+    source_sercurity_group_name: "infraworkshop-apne2-external-permit-security-group"
+    from_port: 3306
+    to_port: 3306
+    ip_protocol: "tcp"
+  infraworkshop-apne2-internal-permit-ssh-security-group-allow-managed-22:
+    security_group_name: "infraworkshop-apne2-internal-permit-security-group"
+    source_sercurity_group_name: "infraworkshop-apne2-admin-permit-security-group"
+    from_port: 22
+    to_port: 22
+    ip_protocol: "tcp"
+  infraworkshop-apne2-internal-permit-ssh-security-group-allow-icmp:
+    security_group_name: "infraworkshop-apne2-internal-permit-security-group"
+    cidr_ipv4: "0.0.0.0/0"
+    from_port: -1
+    to_port: -1
+    ip_protocol: "icmp"
+  infraworkshop-apne2-permit-nat-security-group-allow-vpc-cidr:
+    security_group_name: "infraworkshop-apne2-permit-nat-security-group"
+    cidr_ipv4: "192.168.10.0/24"
+    ip_protocol: "-1"
+egress_rules:
+  infraworkshop-apne2-external-permit-all-security-group-allow-permit:
+    security_group_name: "infraworkshop-apne2-external-permit-security-group"
+    cidr_ipv4: "0.0.0.0/0"
+    ip_protocol: "-1"
+  infraworkshop-apne2-internal-permit-all-security-group-allow-permit:
+    security_group_name: "infraworkshop-apne2-internal-permit-security-group"
+    cidr_ipv4: "0.0.0.0/0"
+    ip_protocol: "-1"
+  infraworkshop-apne2-permit-nat-security-group-allow-vpc-cidr:
+    security_group_name: "infraworkshop-apne2-permit-nat-security-group"
+    cidr_ipv4: "0.0.0.0/0"
+    ip_protocol: "-1"
+  infraworkshop-apne2-admin-permit-all-security-group-allow-permit:
+    security_group_name: "infraworkshop-apne2-admin-permit-security-group"
+    cidr_ipv4: "0.0.0.0/0"
+    ip_protocol: "-1"
