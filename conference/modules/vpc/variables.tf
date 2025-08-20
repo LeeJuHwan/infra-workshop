@@ -6,10 +6,6 @@ variable "vpc_name" {
   description = "The name of vpc"
 }
 
-variable "nat_security_group_name" {
-  description = "The name of security group in nat instance"
-}
-
 variable "subnets" {
   type = map(object({
     availability_zone  = string
